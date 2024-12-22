@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Technology & AI Evolution</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #954f8d;
+            color: #2c3e50;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #0c0b0c;
+            margin-top: 30px;
+        }
+        
+        .container {
+            padding: 30px;
+        }
+        
+        .event {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .event h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #34495e;
+            animation: slideIn 1s ease-out;
+        }
+        
+        .event p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #7f8c8d;
+        }
+        
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .event .details {
+            margin-top: 20px;
+            padding: 15px;
+            background: #7ac6d9;
+            border-radius: 5px;
+            color: #34495e;
+            animation: slideInDetails 1s ease-out;
+        }
+        
+        @keyframes slideInDetails {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .event .button {
+            background: #3498db;
+            color: rgb(246, 248, 243);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        
+        .event .button:hover {
+            background: #2980b9;
+        }
+        
+        .event .topic {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .event .venue,
+        .event .date,
+        .event .time {
+            margin-top: 8px;
+            color: #34495e;
+        }
+        
+        .back-btn {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .back-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Upcoming Events on Technology & AI Evolution</h1>
+    <a href="main.html" class="back-btn">Back to Main</a>
+    <div class="container">
+
+        <div class="event">
+            <h2>AI for Healthcare: Revolutionizing the Future</h2>
+            <p class="topic">Topic: Artificial Intelligence in Healthcare</p>
+            <div class="details">
+                <p class="venue"><strong>Venue:</strong> Tech Auditorium, Silicon Valley</p>
+                <p class="date"><strong>Date:</strong> January 10, 2025</p>
+                <p class="time"><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
+            </div>
+            <button class="button" onclick="showDetails('AI for Healthcare')">More Details</button>
+        </div>
+
+
+        <div class="event">
+            <h2>The Future of Robotics: AI-Powered Machines</h2>
+            <p class="topic">Topic: Robotics and AI Integration</p>
+            <div class="details">
+                <p class="venue"><strong>Venue:</strong> Central Conference Hall, Boston</p>
+                <p class="date"><strong>Date:</strong> February 15, 2025</p>
+                <p class="time"><strong>Time:</strong> 1:00 PM - 3:00 PM</p>
+            </div>
+            <button class="button" onclick="showDetails('The Future of Robotics')">More Details</button>
+        </div>
+
+        <div class="event">
+            <h2>Webinar: The Role of AI in Business Transformation</h2>
+            <p class="topic">Topic: AI in Business & Industry</p>
+            <div class="details">
+                <p class="venue"><strong>Venue:</strong> Online Webinar</p>
+                <p class="date"><strong>Date:</strong> March 25, 2025</p>
+                <p class="time"><strong>Time:</strong> 4:00 PM - 5:30 PM</p>
+            </div>
+            <button class="button" onclick="showDetails('AI in Business Transformation')">More Details</button>
+        </div>
+
+
+        <div class="event">
+            <h2>Workshop on Machine Learning: Hands-On with Python</h2>
+            <p class="topic">Topic: Practical Machine Learning Applications</p>
+            <div class="details">
+                <p class="venue"><strong>Venue:</strong> Tech Lab, San Francisco</p>
+                <p class="date"><strong>Date:</strong> April 5, 2025</p>
+                <p class="time"><strong>Time:</strong> 9:00 AM - 4:00 PM</p>
+            </div>
+            <button class="button" onclick="showDetails('Machine Learning Workshop')">More Details</button>
+        </div>
+    </div>
+
+    <script>
+        function showDetails(eventName) {
+            alert("Showing more details for: " + eventName);
+
+        }
+    </script>
+</body>
+
+</html>

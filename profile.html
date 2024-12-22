@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .profile-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 800px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th,
+        td {
+            border: 3px solid #0f1010;
+            padding: 15px;
+            text-align: left;
+            font-size: 16px;
+        }
+        
+        th {
+            background-color: #34495e;
+            color: white;
+        }
+        
+        td {
+            background-color: #f9f9f9;
+        }
+        
+        .profile-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        
+        .profile-header h2 {
+            margin: 0;
+            font-size: 28px;
+            color: #34495e;
+        }
+        
+        .back-btn {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .back-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="main.html" class="back-btn">Back to Main</a>
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="https://via.placeholder.com/150" alt="Profile Photo">
+            <h2 id="student-name">John Doe</h2>
+        </div>
+
+        <table>
+            <tr>
+                <th>Student Registration ID</th>
+                <td id="student-id">S123456789</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td id="phone-number">+91 9876543210</td>
+            </tr>
+            <tr>
+                <th>Parents' Name</th>
+                <td id="parents-name">Michael and Sarah Doe</td>
+            </tr>
+            <tr>
+                <th>10th Grade Education</th>
+                <td id="10th-grade">A+</td>
+            </tr>
+            <tr>
+                <th>12th Grade Education</th>
+                <td id="12th-grade">A</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td id="address">123, Oak Street, Springfield, IL, USA</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const randomNames = ["John Doe", "Jane Smith", "Alex Brown", "Emily Davis", "Michael Johnson"];
+        const randomPhoneNumbers = ["+91 987xxxxxxx", "+91 99xxxxxxxx", "+91 80xxxxxxx", "+91 78xxxxxxxx"];
+        const randomParents = ["Michael and Sarah Doe", "David and Laura Smith", "John and Mary Brown"];
+        const randomGrades10th = ["A", "A+", "B", "B+"];
+        const randomGrades12th = ["A", "A+", "B", "C"];
+        const randomAddresses = [
+            "123, Oak Street, Springfield, IL, USA",
+            "456, Maple Avenue, Chicago, IL, USA",
+            "789, Pine Road, Los Angeles, CA, USA",
+            "101, Birch Lane, New York, NY, USA"
+        ];
+
+        const randomStudentIds = ["S123456789", "S987654321", "S456789123", "S789123456", "S321654987"];
+
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        document.getElementById('student-name').innerText = getRandomElement(randomNames);
+        document.getElementById('phone-number').innerText = getRandomElement(randomPhoneNumbers);
+        document.getElementById('parents-name').innerText = getRandomElement(randomParents);
+        document.getElementById('10th-grade').innerText = getRandomElement(randomGrades10th);
+        document.getElementById('12th-grade').innerText = getRandomElement(randomGrades12th);
+        document.getElementById('address').innerText = getRandomElement(randomAddresses);
+        document.getElementById('student-id').innerText = getRandomElement(randomStudentIds);
+    </script>
+
+</body>
+
+</html>

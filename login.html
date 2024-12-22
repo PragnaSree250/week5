@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: backgroundCycle 15s infinite;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        @keyframes backgroundCycle {
+            0% {
+                background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2HZPbgRRVKxzhmlfWoRKrxIC2skUdUKHaEA&s');
+            }
+            33% {
+                background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_0TDvzd-29AiiR0NhG54BB4WSARcZ6LX31w&s');
+            }
+            66% {
+                background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYavQeqKJnVArNNYPYXNSnW7OPtbFFQ3a8tQ&s');
+            }
+            100% {
+                background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkcexwZROafaLIQjk935x1H_OMyX6GMSdTgQ&s');
+            }
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .login-btn {
+            background: #1abc9c;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: #16a085;
+        }
+        
+        .form-group .forgot-password {
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        .form-group .forgot-password a {
+            text-decoration: none;
+            color: #1abc9c;
+            font-size: 14px;
+        }
+        
+        .form-group .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Student Login</h2>
+        <form id="login-form">
+
+            <div class="form-group">
+                <label for="student-id">Student ID</label>
+                <input type="text" id="student-id" placeholder="Enter your Student ID">
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text" id="department" placeholder="Enter your Department">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your Password">
+            </div>
+
+            <div class="form-group forgot-password">
+                <a href="#" onclick="forgotPassword()">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login-btn" onclick="login(event)">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function forgotPassword() {
+            const email = prompt("Please enter your email to receive an OTP:");
+            if (email) {
+                alert(`An OTP has been successfully sent to ${email}.`);
+            } else {
+                alert("Please enter a valid email.");
+            }
+        }
+
+        function login(event) {
+            event.preventDefault();
+
+            window.location.href = 'main.html';
+        }
+    </script>
+</body>
+
+</html>

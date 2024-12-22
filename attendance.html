@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Report</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoZFVSRhpxxHDwQSvPLlSENRnkHVBRffZuZuxJOKiD71gPm31FGzi8VaLIMrOYgK5HXk4&usqp=CAU') no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+            color: #fff;
+        }
+        
+        .section {
+            background: linear-gradient(to right, #ffffff, #e6e6e6);
+            background: linear-gradient(to right, #92e3ef, #ac92ee);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: auto;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        p {
+            font-size: 18px;
+            color: #444;
+        }
+        
+        .subject {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+        }
+        
+        .subject h3 {
+            margin: 5px 0;
+            color: #222;
+        }
+        
+        .attendance {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .details-button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .details-button:hover {
+            background-color: #f04b4b;
+        }
+        
+        .absent-dates {
+            margin-top: 10px;
+            padding: 10px;
+            background: linear-gradient(to right, #ffebee, #ffcdd2);
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .back-btn {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .back-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="section">
+        <h2>Attendance Report</h2>
+
+        <p>Here is your detailed attendance report for the semester:</p>
+        <a href="main.html" class="back-btn">Back to Main</a>
+        <div id="attendance-report">
+
+        </div>
+    </div>
+
+    <script>
+        const subjects = [
+            "Mathematics",
+            "Physics",
+            "Computer Science",
+            "Electrical Engineering",
+            "Mechanical Engineering",
+            "Civil Engineering",
+            "Environmental Science"
+        ];
+
+
+        const semesterStartDate = new Date("2024-01-01");
+        const semesterEndDate = new Date("2024-05-31");
+
+
+        function getRandomAttendance() {
+            return Math.floor(Math.random() * (100 - 70 + 1)) + 70;
+        }
+
+
+        function getSemesterDates(startDate, endDate) {
+            const dates = [];
+            let currentDate = new Date(startDate);
+
+            while (currentDate <= endDate) {
+
+                if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
+                    dates.push(new Date(currentDate));
+                }
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            return dates;
+        }
+
+
+        function getAttendanceDetails(percentage, allDates) {
+            const totalDays = allDates.length;
+            const attendedCount = Math.round((percentage / 100) * totalDays);
+            const attendedDates = [];
+            const absentDates = [...allDates];
+
+            while (attendedDates.length < attendedCount) {
+                const randomIndex = Math.floor(Math.random() * absentDates.length);
+                const date = absentDates[randomIndex];
+                if (!attendedDates.includes(date)) {
+                    attendedDates.push(date);
+                    absentDates.splice(randomIndex, 1); // Remove attended date from absentDates
+                }
+            }
+
+            return {
+                attendedDates,
+                absentDates
+            };
+        }
+
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+
+        function generateAttendanceReport() {
+            const reportContainer = document.getElementById('attendance-report');
+            reportContainer.innerHTML = '';
+
+            const semesterDates = getSemesterDates(semesterStartDate, semesterEndDate);
+
+            subjects.forEach(subject => {
+                const attendancePercentage = getRandomAttendance();
+                const {
+                    attendedDates,
+                    absentDates
+                } = getAttendanceDetails(attendancePercentage, semesterDates);
+
+                const subjectDiv = document.createElement('div');
+                subjectDiv.classList.add('subject');
+
+                const subjectName = document.createElement('h3');
+                subjectName.textContent = subject;
+
+                const attendance = document.createElement('p');
+                attendance.classList.add('attendance');
+                attendance.textContent = `Attendance: ${attendancePercentage}%`;
+
+                const detailsButton = document.createElement('button');
+                detailsButton.classList.add('details-button');
+                detailsButton.textContent = "Absent Dates";
+
+                const absentDatesDiv = document.createElement('div');
+                absentDatesDiv.classList.add('absent-dates');
+                absentDatesDiv.textContent = `Absent Dates: ${absentDates.map(formatDate).join(', ')}`;
+
+
+                detailsButton.addEventListener('click', () => {
+                    absentDatesDiv.style.display = absentDatesDiv.style.display === 'none' ? 'block' : 'none';
+                });
+
+                subjectDiv.appendChild(subjectName);
+                subjectDiv.appendChild(attendance);
+                subjectDiv.appendChild(detailsButton);
+                subjectDiv.appendChild(absentDatesDiv);
+
+                reportContainer.appendChild(subjectDiv);
+            });
+        }
+
+        window.onload = generateAttendanceReport;
+    </script>
+</body>
+
+</html>

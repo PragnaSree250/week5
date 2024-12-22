@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Announcements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            background: url('https://www.workday.com/content/dam/web/en-us/images/backgrounds/hero_partners_software_3840x2160.jpg/jcr:content/renditions/cq5dam.mob.600.337.jpg?v=20180116_220138');
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        .announcement-section {
+            margin-bottom: 30px;
+        }
+        
+        .announcement-section h2 {
+            color: #8579f1;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .announcement {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        
+        .announcement h3 {
+            color: #a2d8e3;
+            font-size: 20px;
+        }
+        
+        .announcement p {
+            color: #34495e;
+            font-size: 16px;
+        }
+        
+        .feedback-section,
+        .issues-section,
+        .schedule-section,
+        .feast-section {
+            background: #ecf0f1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .feedback-section h3,
+        .issues-section h3,
+        .schedule-section h3,
+        .feast-section h3 {
+            color: #2c3e50;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .feedback-form textarea,
+        .issues-form textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .submit-btn {
+            background: #a72edf;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #aa0494;
+        }
+        
+        .schedule-table,
+        .feast-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .schedule-table th,
+        .feast-table th,
+        .schedule-table td,
+        .feast-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        
+        .schedule-table th,
+        .feast-table th {
+            background: #bec2bf;
+            color: rgb(22, 19, 19);
+        }
+        
+        .schedule-table td,
+        .feast-table td {
+            background: #ffffff;
+            color: #34495e;
+        }
+        /* Styling for the back button */
+        
+        .back-btn {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .back-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>College Announcements</h1>
+    </div>
+
+    <!-- Back Button -->
+    <a href="main.html" class="back-btn">Back to Main</a>
+
+    <div class="container">
+        <div class="announcement-section">
+            <h2>Upcoming Activities</h2>
+            <div class="announcement">
+                <h3>Sports Day Announcement</h3>
+                <p>Join us for the annual Sports Day on January 15th. All students are encouraged to participate in various sports events. Please sign up by January 10th at the student office.</p>
+            </div>
+            <div class="announcement">
+                <h3>Science Fair Registration</h3>
+                <p>The registration for the Science Fair will be open from January 5th to January 12th. All students are welcome to showcase their innovative projects. Visit the science department for more details.</p>
+            </div>
+        </div>
+
+        <div class="feedback-section">
+            <h3>Feedback on Weekly Classes</h3>
+            <form action="#" method="post">
+                <textarea name="feedback" rows="5" placeholder="Provide your feedback on the classes this week..."></textarea>
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </form>
+        </div>
+
+        <div class="issues-section">
+            <h3>Report Issues</h3>
+            <form action="#" method="post">
+                <textarea name="issues" rows="5" placeholder="Write any issues you are facing (e.g., technical problems, maintenance issues)..."></textarea>
+                <button type="submit" class="submit-btn">Submit Issue</button>
+            </form>
+        </div>
+
+        <div class="schedule-section">
+            <h3>Upcoming Exam Schedule</h3>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mathematics</td>
+                        <td>January 20th</td>
+                        <td>10:00 AM</td>
+                    </tr>
+                    <tr>
+                        <td>Physics</td>
+                        <td>January 22nd</td>
+                        <td>2:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td>Chemistry</td>
+                        <td>January 25th</td>
+                        <td>10:00 AM</td>
+                    </tr>
+                    <tr>
+                        <td>Computer Science</td>
+                        <td>January 28th</td>
+                        <td>2:00 PM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="feast-section">
+            <h3>Feast Announcements</h3>
+            <table class="feast-table">
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Annual College Feast</td>
+                        <td>January 18th</td>
+                        <td>6:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td>Freshers' Welcome Party</td>
+                        <td>January 25th</td>
+                        <td>7:00 PM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

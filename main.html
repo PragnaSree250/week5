@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://media.istockphoto.com/id/846982640/photo/young-students-on-campus.jpg?s=612x612&w=0&k=20&c=XPJoYp_4o0_MwGVvsluyA5kSqPUdMQqqnnWzDveydcA=') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            height: 100vh;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: #939193;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar li {
+            padding: 10px 15px;
+            margin: 10px 0;
+            background: #4f6d8c;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .sidebar li:hover {
+            background: #1abc9c;
+        }
+        
+        .sidebar-image {
+            width: 100%;
+            height: auto;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calendar {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            margin-left: 20px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .calendar h2 {
+            text-align: center;
+            color: #080808;
+        }
+        
+        .calendar table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .calendar th,
+        .calendar td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .calendar th {
+            background: #368737;
+            color: white;
+        }
+        
+        .calendar td:hover {
+            background: #f271ad;
+            color: white;
+        }
+        
+        .reminder {
+            margin-top: 20px;
+        }
+        
+        .reminder input[type="date"],
+        .reminder input[type="text"] {
+            width: calc(100% - 30px);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        .reminder button {
+            background: #f37ccb;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .reminder button:hover {
+            background: #16a085;
+        }
+        
+        .reminders-list {
+            margin-top: 10px;
+            color: #34495e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>search</h2>
+
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0De_Vn8CqYgJtYr8j0kInrsT2MiQhUvfk6Q&s" alt="Search Image" class="sidebar-image">
+        <ul>
+            <li onclick="window.location.href='attendance.html'">Attendance Report</li>
+            <li onclick="window.location.href='events.html'">Events in College</li>
+            <li onclick="window.location.href='awards.html'">Academic awards & Grades</li>
+            <li onclick="window.location.href='accounment.html'">accounment</li>
+            <li onclick="window.location.href='profile.html'">My Profile</li>
+        </ul>
+    </div>
+
+
+    <div class="calendar">
+        <h2>Calendar</h2>
+        <div id="calendar-container"></div>
+
+        <div class="reminder">
+            <h3>Add Reminder</h3>
+            <input type="date" id="reminder-date">
+            <input type="text" id="reminder-text" placeholder="Enter reminder description">
+            <button onclick="addReminder()">Add Reminder</button>
+        </div>
+
+        <h3>Reminders</h3>
+        <div class="reminders-list" id="reminders-list"></div>
+    </div>
+
+    <script>
+        const reminders = [];
+
+        function generateCalendar() {
+            const calendarContainer = document.getElementById('calendar-container');
+            calendarContainer.innerHTML = '';
+
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = today.getMonth();
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            let table = `<table><thead><tr>
+                <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+            </tr></thead><tbody><tr>`;
+            for (let i = 0; i < firstDay; i++) {
+                table += '<td></td>';
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day).toISOString().split('T')[0];
+                table += `<td onclick="showReminders('${date}')">${day}</td>`;
+
+                if ((firstDay + day) % 7 === 0) {
+                    table += '</tr><tr>';
+                }
+            }
+
+            const remainingCells = 7 - ((firstDay + daysInMonth) % 7);
+            for (let i = 0; i < remainingCells && remainingCells < 7; i++) {
+                table += '<td></td>';
+            }
+
+            table += '</tr></tbody></table>';
+            calendarContainer.innerHTML = table;
+        }
+
+        function addReminder() {
+            const date = document.getElementById('reminder-date').value;
+            const description = document.getElementById('reminder-text').value;
+
+            if (!date || !description) {
+                alert('Please fill in both fields.');
+                return;
+            }
+
+            reminders.push({
+                date,
+                description
+            });
+            document.getElementById('reminder-date').value = '';
+            document.getElementById('reminder-text').value = '';
+
+            displayReminders();
+        }
+
+        function displayReminders() {
+            const remindersList = document.getElementById('reminders-list');
+            remindersList.innerHTML = reminders.map(reminder => `<p>${reminder.date}: ${reminder.description}</p>`).join('');
+        }
+
+
+        function showReminders(date) {
+            const remindersList = reminders.filter(reminder => reminder.date === date);
+            const remindersContainer = document.getElementById('reminders-list');
+            remindersContainer.innerHTML = remindersList.length > 0 ?
+                remindersList.map(reminder => `<p>${reminder.description}</p>`).join('') :
+                `<p>No reminders for this date</p>`;
+        }
+
+        window.onload = generateCalendar;
+    </script>
+</body>
+
+</html>
